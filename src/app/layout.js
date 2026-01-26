@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col pt-14 sm:pt-16">
         <CartProvider>
           <Navbar />
           <main className="flex-grow">{children}</main>
