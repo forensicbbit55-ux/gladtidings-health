@@ -1,120 +1,120 @@
-import { useAuth } from '@/contexts/AuthContext'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+'use client'
 
-export default function AdminLogin() {
-  const { signIn, loading } = useAuth()
-  const router = useRouter()
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+
+export default function AdminLoginPage() {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
   const [error, setError] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
-    setIsSubmitting(true)
+    setIsLoading(true)
 
     try {
-      const result = await signIn(formData.email, formData.password)
-      
-      if (result.success) {
+      const response = await fetch('/api/admin/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        // Redirect to admin dashboard
         router.push('/admin')
       } else {
-        setError(result.error)
+        setError(data.error || 'Login failed')
       }
     } catch (error) {
+      console.error('Login error:', error)
       setError('An unexpected error occurred')
     } finally {
-      setIsSubmitting(false)
+      setIsLoading(false)
     }
   }
 
-  const handleChange = (e) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
-  }
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-600"></div>
-      </div>
-    )
-  }
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-100 flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
-        <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-gradient-to-r from-teal-600 to-emerald-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-            </svg>
-          </div>
-          <h1 className="text-2xl font-bold text-gray-900">Admin Login</h1>
-          <p className="text-gray-600 mt-2">Glad Tidings Medical Missionary</p>
-        </div>
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <h2 className="text-center text-3xl font-extrabold text-gray-900">
+          Admin Login
+        </h2>
+        <p className="mt-2 text-center text-sm text-gray-600">
+          Sign in to access the admin dashboard
+        </p>
+      </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-              <p className="text-red-600 text-sm">{error}</p>
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            {error && (
+              <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded">
+                {error}
+              </div>
+            )}
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email address
+              </label>
+              <div className="mt-1">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
+                />
+              </div>
             </div>
-          )}
 
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-              Email Address
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-              placeholder="admin@example.com"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <div className="mt-1">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
+                />
+              </div>
+            </div>
 
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-              placeholder="••••••••"
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isSubmitting ? 'Signing in...' : 'Sign In'}
-          </button>
-        </form>
-
-        <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
-            <a href="/signup" className="text-emerald-600 hover:text-emerald-700 font-medium">
-              Sign up
-            </a>
-          </p>
+            <div>
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isLoading ? 'Signing in...' : 'Sign in'}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

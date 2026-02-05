@@ -180,7 +180,14 @@ function AdminLayoutContent({ children }) {
 
           {/* Logout Button */}
           <button
-            onClick={() => console.log('Logout clicked')}
+            onClick={async () => {
+              try {
+                await fetch('/api/admin/auth/login', { method: 'DELETE' })
+                window.location.href = '/admin/login'
+              } catch (error) {
+                console.error('Logout error:', error)
+              }
+            }}
             className={`
               w-full flex items-center px-3 py-2.5 rounded-lg transition-all duration-200
               text-red-600 hover:bg-red-50 hover:text-red-700
@@ -247,11 +254,11 @@ function AdminLayoutContent({ children }) {
                 {/* User Menu */}
                 <div className="flex items-center space-x-2 lg:space-x-3 pl-2 lg:pl-4 border-l border-gray-200">
                   <div className="text-right hidden sm:block">
-                    <p className="text-sm font-medium text-gray-900">{profile?.full_name || 'Admin User'}</p>
-                    <p className="text-xs text-gray-500 capitalize">{profile?.role || 'Administrator'}</p>
+                    <p className="text-sm font-medium text-gray-900">Admin User</p>
+                    <p className="text-xs text-gray-500 capitalize">Administrator</p>
                   </div>
                   <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-r from-teal-600 to-emerald-600 rounded-full flex items-center justify-center text-white font-semibold text-sm lg:text-base">
-                    {profile?.full_name?.charAt(0) || 'A'}
+                    A
                   </div>
                 </div>
               </div>

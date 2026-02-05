@@ -1,0 +1,26 @@
+import { query } from '../../../lib/db.js'
+
+export async function POST(request) {
+  try {
+    // Read the SQL file
+    const fs = require('fs')
+    const path = require('path')
+    const sqlFilePath = path.join(process.cwd(), 'database', 'create-tables.sql')
+    const sqlQuery = fs.readFileSync(sqlFilePath, 'utf8')
+
+    // Execute the SQL
+    const result = await query(sqlQuery)
+    
+    return Response.json({
+      success: true,
+      message: 'Tables created successfully',
+      data: result
+    })
+  } catch (error) {
+    console.error('Error creating tables:', error)
+    return Response.json({
+      success: false,
+      error: error.message
+    }, { status: 500 })
+  }
+}

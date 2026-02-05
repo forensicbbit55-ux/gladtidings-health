@@ -65,7 +65,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center justify-center py-1 border-t border-emerald-200/30">
             <div className="flex items-center space-x-4">
               <Link href="/" className="text-gray-700 hover:text-emerald-600 font-medium transition-colors text-xs">Home</Link>
-              <Link href="/shop" className="text-gray-700 hover:text-emerald-600 font-medium transition-colors text-xs">Shop</Link>
+              <Link href="/products" className="text-gray-700 hover:text-emerald-600 font-medium transition-colors text-xs">Shop</Link>
               <Link href="/about" className="text-gray-700 hover:text-emerald-600 font-medium transition-colors text-xs">About</Link>
               <Link href="/blog" className="text-gray-700 hover:text-emerald-600 font-medium transition-colors text-xs">Blog</Link>
               <Link href="/contact" className="text-gray-700 hover:text-emerald-600 font-medium transition-colors text-xs">Contact</Link>
@@ -80,7 +80,7 @@ export default function Navbar() {
           <div className="lg:hidden bg-white border-t">
             <div className="container mx-auto px-4 py-4 space-y-3">
               <Link href="/" className="block text-gray-700 hover:text-emerald-600 font-medium transition-colors">Home</Link>
-              <Link href="/shop" className="block text-gray-700 hover:text-emerald-600 font-medium transition-colors">Shop</Link>
+              <Link href="/products" className="block text-gray-700 hover:text-emerald-600 font-medium transition-colors">Shop</Link>
               <Link href="/about" className="block text-gray-700 hover:text-emerald-600 font-medium transition-colors">About</Link>
               <Link href="/blog" className="block text-gray-700 hover:text-emerald-600 font-medium transition-colors">Blog</Link>
               <Link href="/contact" className="block text-gray-700 hover:text-emerald-600 font-medium transition-colors">Contact</Link>

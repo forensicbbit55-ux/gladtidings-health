@@ -21,7 +21,7 @@ export default function AdminLogin() {
       // TODO: Implement Neon database authentication
       // For now, just simulate login
       if (formData.email === 'admin' && formData.password === 'admin') {
-        router.push('/admin/remedies')
+        router.push('/admin')
       } else {
         setError('Invalid credentials')
       }

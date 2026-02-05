@@ -1,0 +1,67 @@
+import { cookies } from 'next/headers'
+import { NextResponse } from 'next/server'
+
+// Hardcoded admin credentials for development
+const ADMIN_EMAIL = 'admin@gladtidings.com'
+const ADMIN_PASSWORD = 'admin123'
+
+export async function POST(request) {
+  try {
+    const { email, password } = await request.json()
+
+    // Debug logging
+    console.log('Login attempt:', { email, password: '***' })
+    console.log('Expected:', { ADMIN_EMAIL, ADMIN_PASSWORD: '***' })
+
+    // Simple hardcoded authentication
+    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+      console.log('Authentication successful')
+      // Set secure HTTP-only cookie
+      const cookieStore = cookies()
+      cookieStore.set('admin_session', 'authenticated', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 60 * 60 * 24, // 24 hours
+        path: '/'
+      })
+
+      return NextResponse.json({ 
+        success: true, 
+        message: 'Authentication successful' 
+      })
+    } else {
+      console.log('Authentication failed: Invalid credentials')
+      return NextResponse.json({ 
+        success: false, 
+        error: 'Invalid credentials' 
+      }, { status: 401 })
+    }
+
+  } catch (error) {
+    console.error('Login error:', error)
+    return NextResponse.json({ 
+      success: false, 
+      error: 'Internal server error' 
+    }, { status: 500 })
+  }
+}
+
+export async function DELETE() {
+  try {
+    // Clear admin session
+    const cookieStore = cookies()
+    cookieStore.delete('admin_session')
+
+    return NextResponse.json({ 
+      success: true, 
+      message: 'Logged out successfully' 
+    })
+  } catch (error) {
+    console.error('Logout error:', error)
+    return NextResponse.json({ 
+      success: false, 
+      error: 'Internal server error' 
+    }, { status: 500 })
+  }
+}
