@@ -1,5 +1,5 @@
-import { query } from '../../../../lib/db'
-import { hashPassword, verifyPassword, createSessionToken } from '../../../../lib/auth'
+import { query } from '../../../../../lib/db'
+import { hashPassword, verifyPassword, createSessionToken } from '../../../../../lib/auth'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 
