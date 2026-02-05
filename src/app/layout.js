@@ -2,7 +2,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { AuthProvider } from '../contexts/AuthProvider'
-import { CartProvider } from '../contexts/CartContext'
+import { CartProvider } from '../context/CartContext'
 
 export const metadata = {
   title: 'Glad Tidings',
