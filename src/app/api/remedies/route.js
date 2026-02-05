@@ -1,5 +1,5 @@
-import { query } from '../../../../../lib/db'
-import { verifySessionToken } from '../../../../../lib/auth'
+import { query } from '@lib/db'
+import { verifySessionToken } from '@lib/auth'
 import { NextResponse } from 'next/server'
 
 // Helper function to check authentication

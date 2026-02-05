@@ -1,5 +1,5 @@
-import { query } from '../../../../lib/db'
-import { hashPassword } from '../../../../lib/auth'
+import { query } from '@lib/db'
+import { hashPassword } from '@lib/auth'
 
 export async function POST(request) {
   try {

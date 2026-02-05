@@ -1,7 +1,7 @@
 // API endpoint for testing Neon database connection
 // This route handles server-side database operations
 
-import { query } from '../../../../lib/db'
+import { query } from '@lib/db'
 
 export async function GET() {
   try {

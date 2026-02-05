@@ -1,5 +1,5 @@
 // API endpoint for deleting a product
-import { query } from '../../../../../lib/db'
+import { query } from '@lib/db'
 
 export async function DELETE(request, { params }) {
   try {
