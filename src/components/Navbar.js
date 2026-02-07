@@ -21,7 +21,7 @@ export default function Navbar() {
                 <div className="relative">
                   <div className="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center shadow-lg overflow-hidden">
                     {/* Logo */}
-                    <img src="/images/gladtidings-logo.png" alt="Glad Tidings" className="w-8 h-8 object-contain" />
+                    <div className="text-white font-bold text-xl">GT</div>
                   </div>
                 </div>
                 <div>

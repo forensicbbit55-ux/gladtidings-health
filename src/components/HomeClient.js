@@ -13,21 +13,21 @@ export default function HomeClient() {
       title: 'Medical Missionary Services',
       subtitle: 'Natural Health Solutions',
       description: 'Discover holistic wellness through natural remedies and spiritual health practices',
-      image: 'https://picsum.photos/seed/medical-missionary/1200/700.jpg'
+      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80'
     },
     {
       id: 2,
       title: 'Spiritual Wellness',
       subtitle: 'Faith-Based Healing',
       description: 'Integrating spiritual practices with natural health for complete wellness',
-      image: 'https://picsum.photos/seed/spiritual-wellness/1200/700.jpg'
+      image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80'
     },
     {
       id: 3,
       title: 'Community Health',
       subtitle: 'Medical Missionary Outreach',
       description: 'Serving communities with natural health education and spiritual support',
-      image: 'https://picsum.photos/seed/community-health/1200/700.jpg'
+      image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80'
     }
   ]
 
