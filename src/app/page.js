@@ -101,21 +101,21 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('all')
 
   const categories = [
-    { id: 'exotic', name: 'Exotic Fruit', icon: '🍋' },
-    { id: 'healthy', name: 'Healthy Food', icon: '🥬' },
-    { id: 'organic', name: 'Organic Products', icon: '🌿' }
+    { id: 'herbal', name: 'Herbal Remedies', icon: '�' },
+    { id: 'wellness', name: 'Wellness', icon: '💚' },
+    { id: 'spiritual', name: 'Spiritual Health', icon: '🙏' }
   ]
 
   const products = [
-    { id: 1, name: 'European Lemon Zest', category: 'Cruciferous', price: 12.99, rating: 4.5, image: '/api/placeholder/200/200', badge: 'New' },
-    { id: 2, name: 'Cabbage Band Gobhi', category: 'Cruciferous', price: 8.99, rating: 4.3, image: '/api/placeholder/200/200' },
-    { id: 3, name: 'Aurore Grape', category: 'Green Vegetable', price: 15.99, rating: 4.7, image: '/api/placeholder/200/200', badge: 'Sale' },
-    { id: 4, name: 'Organic Maize', category: 'Whole Grain', price: 9.99, rating: 4.4, image: '/api/placeholder/200/200' },
-    { id: 5, name: 'Chinese Cabbage', category: 'Cruciferous', price: 7.99, rating: 4.2, image: '/api/placeholder/200/200' },
-    { id: 6, name: 'Green Beans – 1 Kg', category: 'Broad Beans', price: 11.99, rating: 4.6, image: '/api/placeholder/200/200', badge: 'Best Seller' },
-    { id: 7, name: 'Fresh Drinks', category: 'Beverages', price: 6.99, rating: 4.8, image: '/api/placeholder/200/200', badge: 'Popular' },
-    { id: 8, name: 'Cucumber', category: 'Allium', price: 5.99, rating: 4.1, image: '/api/placeholder/200/200' },
-    { id: 9, name: 'German Chilies Local', category: 'Green Peas', price: 8.49, rating: 4.0, image: '/api/placeholder/200/200' }
+    { id: 1, name: 'Natural Herbal Tea Blend', category: 'Herbal Remedies', price: 12.99, rating: 4.5, image: '/images/products/herbal-tea.jpg', badge: 'New' },
+    { id: 2, name: 'Organic Echinacea Extract', category: 'Immune Support', price: 8.99, rating: 4.3, image: '/images/products/echinacea.jpg' },
+    { id: 3, name: 'Essential Oil Collection', category: 'Aromatherapy', price: 15.99, rating: 4.7, image: '/images/products/essential-oils.jpg', badge: 'Sale' },
+    { id: 4, name: 'Natural Vitamin C Complex', category: 'Supplements', price: 9.99, rating: 4.4, image: '/images/products/vitamin-c.jpg' },
+    { id: 5, name: 'Herbal Detox Formula', category: 'Cleansing', price: 7.99, rating: 4.2, image: '/images/products/detox.jpg' },
+    { id: 6, name: 'Organic Ginger Root', category: 'Digestive Health', price: 11.99, rating: 4.6, image: '/images/products/ginger.jpg', badge: 'Best Seller' },
+    { id: 7, name: 'Natural Sleep Aid', category: 'Wellness', price: 6.99, rating: 4.8, image: '/images/products/sleep-aid.jpg', badge: 'Popular' },
+    { id: 8, name: 'Probiotic Supplement', category: 'Digestive Health', price: 5.99, rating: 4.1, image: '/images/products/probiotic.jpg' },
+    { id: 9, name: 'Natural Pain Relief', category: 'Pain Management', price: 8.49, rating: 4.0, image: '/images/products/pain-relief.jpg' }
   ]
 
   const features = [
@@ -126,8 +126,8 @@ export default function Home() {
   ]
 
   const blogPosts = [
-    { title: 'Review of Healthy Breakfast Meals for Energy Boost', category: 'Nutrition', date: '2 days ago' },
-    { title: 'Simple Kitchen Habits for a More Plant-Based Life', category: 'Lifestyle', date: '5 days ago' }
+    { title: 'Natural Remedies for Seasonal Wellness', category: 'Health Tips', date: '2 days ago' },
+    { title: 'Spiritual Practices for Holistic Healing', category: 'Spiritual Health', date: '5 days ago' }
   ]
 
   return (

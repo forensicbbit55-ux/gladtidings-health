@@ -134,9 +134,9 @@ export default function Signup() {
             <div className={`absolute inset-0 flex items-center justify-center p-12 transition-transform duration-700 ease-in-out ${isSignUp ? 'translate-x-0' : '-translate-x-full'}`}>
               {/* Sign Up Content */}
               <div className="text-white text-center">
-                <h2 className="text-4xl font-bold mb-4">Hello, Friend!</h2>
+                <h2 className="text-4xl font-bold mb-4">Welcome to Glad Tidings</h2>
                 <p className="text-lg mb-8 opacity-90">
-                  Enter your personal details and start your journey with us
+                  Join our community for natural health insights and spiritual wellness
                 </p>
                 <button
                   type="button"
