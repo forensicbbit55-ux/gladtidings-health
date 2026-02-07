@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 export default function Navbar() {
-  // Logo and carousel fixes deployed - GT logo visible, carousel at original height
+  // Logo and carousel fixes deployed - Logo visible in production, carousel at original height
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isLoginOpen, setIsLoginOpen] = useState(false)
