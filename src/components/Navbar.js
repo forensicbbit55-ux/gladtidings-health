@@ -8,6 +8,7 @@ export default function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isLoginOpen, setIsLoginOpen] = useState(false)
+  const [isSignUp, setIsSignUp] = useState(false)
   const [cartItems, setCartItems] = useState(3)
 
   return (
@@ -21,7 +22,7 @@ export default function Navbar() {
                 <div className="relative">
                   <div className="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center shadow-lg overflow-hidden">
                     {/* Logo */}
-                    <div className="text-white font-bold text-xl">GT</div>
+                    <img src="/images/gladtidings-logo.png" alt="Glad Tidings" className="w-8 h-8 object-contain" />
                   </div>
                 </div>
                 <div>
@@ -161,9 +162,12 @@ export default function Navbar() {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white rounded-lg shadow-xl">
             <div className="p-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold text-gray-900">Login</h2>
+                <h2 className="text-xl font-semibold text-gray-900">{isSignUp ? 'Sign Up' : 'Login'}</h2>
                 <button
-                  onClick={() => setIsLoginOpen(false)}
+                  onClick={() => {
+                    setIsLoginOpen(false)
+                    setIsSignUp(false)
+                  }}
                   className="p-2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -172,6 +176,16 @@ export default function Navbar() {
                 </button>
               </div>
               <form className="space-y-4">
+                {isSignUp && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                    <input
+                      type="text"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      placeholder="Enter your full name"
+                    />
+                  </div>
+                )}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                   <input
@@ -188,22 +202,31 @@ export default function Navbar() {
                     placeholder="Enter your password"
                   />
                 </div>
+                {isSignUp && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                    <input
+                      type="password"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      placeholder="Confirm your password"
+                    />
+                  </div>
+                )}
                 <button type="submit" className="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors duration-200 text-sm font-medium w-full">
-                  Login
+                  {isSignUp ? 'Create Account' : 'Login'}
                 </button>
               </form>
               
-              {/* Sign Up Link */}
+              {/* Toggle Sign Up/Login */}
               <div className="mt-6 text-center">
                 <p className="text-gray-600">
-                  Don't have an account?{' '}
-                  <Link 
-                    href="/signup" 
+                  {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
+                  <button
+                    onClick={() => setIsSignUp(!isSignUp)}
                     className="text-emerald-600 hover:text-emerald-700 font-medium transition-colors"
-                    onClick={() => setIsLoginOpen(false)}
                   >
-                    Sign Up
-                  </Link>
+                    {isSignUp ? 'Login' : 'Sign Up'}
+                  </button>
                 </p>
               </div>
             </div>
