@@ -1,5 +1,45 @@
 import ProductsClient from './ProductsClient'
 
+// SEO metadata for products page
+export const metadata = {
+  title: 'Natural Health Products - Medical Missionary Store',
+  description: 'Shop our selection of natural health remedies, herbal supplements, and wellness products. All natural, ethically sourced for your holistic health journey.',
+  keywords: [
+    'natural health products',
+    'herbal remedies',
+    'medical missionary store',
+    'natural supplements',
+    'wellness products',
+    'herbal medicine',
+    'alternative health',
+    'natural healing',
+    'health supplements',
+    'medical missionary products'
+  ],
+  openGraph: {
+    title: 'Natural Health Products - Medical Missionary Store',
+    description: 'Shop our selection of natural health remedies, herbal supplements, and wellness products. All natural, ethically sourced for your holistic health journey.',
+    type: 'website',
+    images: [
+      {
+        url: '/images/products-og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Natural Health Products - Medical Missionary Store',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Natural Health Products - Medical Missionary Store',
+    description: 'Shop our selection of natural health remedies, herbal supplements, and wellness products.',
+    images: ['/images/products-og-image.jpg'],
+  },
+  alternates: {
+    canonical: '/products',
+  },
+}
+
 async function getCategories() {
   try {
     const baseUrl = process.env.NODE_ENV === 'production' 

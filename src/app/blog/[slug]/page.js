@@ -5,6 +5,69 @@ import { useParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 
+// This will be handled by the API route for server-side SEO
+export async function generateMetadata({ params }) {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog/posts/${params.slug}`)
+    const data = await response.json()
+    
+    if (!data.success || !data.post) {
+      return {
+        title: 'Post Not Found | Glad Tidings',
+        description: 'The blog post you are looking for could not be found.',
+      }
+    }
+
+    const post = data.post
+    const title = post.meta_title || post.title
+    const description = post.meta_description || post.excerpt || `Read about ${post.title} on Glad Tidings Medical Missionary blog.`
+    
+    return {
+      title: title,
+      description: description,
+      keywords: post.categories || ['medical missionary', 'health', 'wellness'],
+      authors: post.author_name ? [{ name: post.author_name }] : [{ name: 'Glad Tidings Medical Missionary' }],
+      openGraph: {
+        title: title,
+        description: description,
+        type: 'article',
+        publishedTime: post.published_at,
+        modifiedTime: post.updated_at,
+        authors: post.author_name ? [post.author_name] : ['Glad Tidings Medical Missionary'],
+        images: post.cover_image ? [
+          {
+            url: post.cover_image,
+            width: 1200,
+            height: 630,
+            alt: post.title,
+          },
+        ] : [
+          {
+            url: '/images/blog-og-image.jpg',
+            width: 1200,
+            height: 630,
+            alt: 'Glad Tidings Medical Missionary Blog',
+          },
+        ],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: title,
+        description: description,
+        images: post.cover_image ? [post.cover_image] : ['/images/blog-og-image.jpg'],
+      },
+      alternates: {
+        canonical: `/blog/${params.slug}`,
+      },
+    }
+  } catch (error) {
+    return {
+      title: 'Blog Post | Glad Tidings',
+      description: 'Read the latest insights on natural health and wellness.',
+    }
+  }
+}
+
 export default function BlogPost() {
   const params = useParams()
   const [post, setPost] = useState(null)

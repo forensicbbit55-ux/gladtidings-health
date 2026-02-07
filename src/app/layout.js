@@ -5,8 +5,72 @@ import { AuthProvider } from '../contexts/AuthProvider'
 import { CartProvider } from '../context/CartContext'
 
 export const metadata = {
-  title: 'Glad Tidings',
-  description: 'Glad Tidings application',
+  title: {
+    default: 'Glad Tidings - Medical Missionary Health & Wellness',
+    template: '%s | Glad Tidings'
+  },
+  description: 'Discover natural health remedies, medical missionary insights, and wellness tips. Your trusted source for holistic health and spiritual wellness.',
+  keywords: [
+    'medical missionary',
+    'natural health',
+    'wellness tips',
+    'herbal remedies',
+    'spiritual health',
+    'holistic healing',
+    'natural remedies',
+    'health tips',
+    'medical missionary work',
+    'alternative medicine'
+  ],
+  authors: [{ name: 'Glad Tidings Medical Missionary' }],
+  creator: 'Glad Tidings',
+  publisher: 'Glad Tidings',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://gladtidings-health.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: process.env.NEXT_PUBLIC_BASE_URL || 'https://gladtidings-health.vercel.app',
+    title: 'Glad Tidings - Medical Missionary Health & Wellness',
+    description: 'Discover natural health remedies, medical missionary insights, and wellness tips. Your trusted source for holistic health and spiritual wellness.',
+    siteName: 'Glad Tidings',
+    images: [
+      {
+        url: '/images/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Glad Tidings Medical Missionary Health & Wellness',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Glad Tidings - Medical Missionary Health & Wellness',
+    description: 'Discover natural health remedies, medical missionary insights, and wellness tips.',
+    images: ['/images/og-image.jpg'],
+    creator: '@gladtidings',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+  },
 }
 
 export default function RootLayout({ children }) {
